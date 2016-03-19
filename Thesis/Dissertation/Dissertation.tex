@@ -113,9 +113,9 @@ There are many factors that can affect the run-time performance of computer prog
 There are other options that differ from a parallel approach that could be utilised these can include memory alignment of instructions or a graphics processing unit (GPU) based implementation.      
 
 \subsection{Aims and Objectives}
-The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism that will be achieved through the creation of an application using the chosen solution to allow a user to create various sizes of level. The application will then build the level in sections and perform path finding on each section and assess the quality of both the level and the path taking into account the complexity of a given level such as obstacles slopes and caves and then assessing how easy it is to build a path round that level this will give a score to both the technique of level generation and the path-finding technique used.\\ 
+The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism that will be achieved through the creation of an application using the chosen solution to allow a user to create various sizes of level. The application will then build the level in sections and perform path finding on each section and assess the quality of both the level and the path taking into account the complexity of a given level such as obstacles slopes and caves this will then assess how easy it is to build a path round that level and will give a score to both the technique of level generation and the path-finding technique used.\\ 
 
-The objectives for this project is to find a method of combining level generation and path finding and gathering data from both the chosen solution and current practices to make an unbiased comparison between them and establish the viability of a double ended testing mechanism.
+The objectives for this project is to find a method of combining level generation and path finding while gathering data from both the chosen solution and current practices to make an unbiased comparison between them and establish the viability of a double ended testing mechanism.
 \subsection{Report Layout}
 The report goes on to a review of literature sources associated with the project then technical information on the project will be supplied next there will be an analysis into the methodology used in implementation and finally the testing and results will be given alongside the conclusion of the project which will be based on the results of testing.
 \newpage
@@ -123,6 +123,7 @@ The report goes on to a review of literature sources associated with the project
 \input{Literature-Review/Literature-Review-Draft.tex}
 \newpage
 \section{Technical Information}
+This section will look at the hardware based issues with the project and will show updates to hardware utilisation.
 \newpage
 \section{Implementation Methodology}
 This section will analyse how the different areas of the implementation are approached and seek to explain how these approaches work at a technical level.
@@ -139,15 +140,24 @@ This external library generates different types of noise as shown by figure \ref
 \end{figure}
 
 \pagebreak
-When this image is rendered to the screen it gives the following output:
+When this image is rendered to the screen against a depth buffer on the GPU it gives the following output:
 \begin{figure}[ht!]
 	\includegraphics[width=0.5\textwidth]{images/Heightmap-output}
 	\caption{the output from rendering the heightmap} \label{heightmap}
-\end{figure} 
+\end{figure}
 
+\subsection{Nodes and placement} 
+To place and visualise the nodes that are the basis for any path finding technique to be used on the terrain. The glut (OpenGL Utility Toolkit) api was used to create a simple method for rendering a sphere these were then placed along the x and z axis of the terrain and position on the y-axis is checked against the height values read in from the height-map to either raise or lower the nodes to suit the terrain. 
+
+\subsection{Path finding implementation}
+
+
+\subsection{The metric for analysis of techniques}
 
 \subsection{Additional Information / Knowledge Required}
-To implement the project a solid knowledge of a graphical programming language such as openGL or DirectX is required also perfomance based GPGPU programming API's  such as OpenCL or Nvidia's CUDA could be useful for optimising the project.  
+To implement the project a solid knowledge of a graphical programming language such as openGL or DirectX is required also perfomance based GPGPU programming API's  such as OpenCL or Nvidia's CUDA could be useful for optimising the project.
+
+The artificial intelligence aspects of the project will require knowledge of various path-finding techniques and an understanding of machine based learning techniques would be beneficial to allow training of the system for analysis of the terrain and path-finding metric.   
 \newpage
 \section{Testing and results}
 \begin{tabular}{|p{0.8cm}|p{2cm}|p{5cm}|p{1.4cm}|p{2cm}|}
@@ -162,7 +172,7 @@ Test Id & Test Name & Test Rationale & results & Retesting result (if modified) 
 \hline
 4 & Other level generation techniques & This could be required if the height-map approach has issues or is not viable due to low performance & pass & may be revisited as additional functionality\\
 \hline
-5 & node placement and rendering & This will allow for visualisation of the data for testing and the nodes are required for the path finder & ongoing & n/a\\ 
+5 & node placement and rendering & This will allow for visualisation of the data for testing and the nodes are required for the path finder & pass & n/a\\ 
 \hline
 \end{tabular}
 \newpage
