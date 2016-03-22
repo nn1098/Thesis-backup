@@ -99,23 +99,29 @@ As games evolve and expand with the times there is an increased demand placed up
 \subsection*{}
 
 \newpage
-\section{introduction}
-This chapter will outline the basic topics relating to the project in terms of both level generation and path-finding then some of the optimisation techniques that may be used in the project will be discussed. Finally the main goals for the project will be analysed and the layout of the report from this point forward will be given.
+\section{Introduction}
 
 \subsection{Procedural Level Generation}
-Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into the program this approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale  then reading the data from a height-map and using this data to transform a plane to create a large scale landscape in chunks.
+Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale  then reading the data from a height-map and using this data to transform a plane to create a large scale landscape in chunks.
 
 \subsection{Path-Finding}
 Path-Finding is an area of Artificial Intelligence that allows for definition what parts of a given level can be moved to by computer controlled players this is done by creating a set of nodes on walkable areas then linking these nodes together to form a path there are various algorithms that accomplish this task. A time-line of path-finding developments is given at figure: \ref{timeline}. The project will attempt to use path-finding on the generated level in small chunks to allow for faster processing and access to more optimisation techniques.  
 \subsection{Optimisation Techniques}
-There are many factors that can affect the run-time performance of computer programs and a similar amount of approaches that can be utilised to improve this some of the most prominent techniques in this area include use of multi-threading and parallelism frameworks such as OpenMP for use in single computer based solutions and MPI which allows for parallel implementation over a network.
+There are many factors that can affect the run-time performance of computer programs and a similar amount of approaches that can be utilised to improve performance some of the most prominent techniques in this area include use of multi-threading and parallelism frameworks such as OpenMP for use in single computer based solutions and MPI which allows for parallel implementation over a network.
 
 There are other options that differ from a parallel approach that could be utilised these can include memory alignment of instructions or a graphics processing unit (GPU) based implementation.      
 
 \subsection{Aims and Objectives}
-The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism that will be achieved through the creation of an application using the chosen solution to allow a user to create various sizes of level. The application will then build the level in sections and perform path finding on each section and assess the quality of both the level and the path taking into account the complexity of a given level such as obstacles slopes and caves this will then assess how easy it is to build a path round that level and will give a score to both the technique of level generation and the path-finding technique used.\\ 
+The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism for quality to allow a performance based assessment between both level of detail in the terrain when compared with the time taken for a path finding technique to find a correct path.\\\\
+   The aim of this project will be achieved by completion of the following objectives which include both design and implementation as shown below.
+   
+   \subsubsection{Design objectives}
+   
+   
+   \subsubsection{Implementation Objectives}
+    The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across a given terrain and assess the quality of both the level and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
 
-The objectives for this project is to find a method of combining level generation and path finding while gathering data from both the chosen solution and current practices to make an unbiased comparison between them and establish the viability of a double ended testing mechanism.
+
 \subsection{Report Layout}
 The report goes on to a review of literature sources associated with the project then technical information on the project will be supplied next there will be an analysis into the methodology used in implementation and finally the testing and results will be given alongside the conclusion of the project which will be based on the results of testing.
 \newpage
@@ -133,21 +139,26 @@ For a basic outline of the expected execution of the project please refer to fig
 To generate the three dimensional terrain used in the project a height-map was generated through the use of the Libnoise external library which is discussed below.
 
 \subsubsection{Libnoise external library}
-This external library generates different types of noise as shown by figure \ref{noise} this is achieved use of various modules that can produce different types of noise including perlin which is the basis for our output shown in \ref{heightmap} another feature of this library is that it allows the noise generated to be written out to various file types for the height-map in the project a Bitmap (BMP) graphical file type was produced which is then loaded into the project and stored in a data structure for manipulation and rendering.\\
+This external library generates different types of noise as shown by figure \ref{noise} this is achieved use of various modules that can produce different types of noise including Perlin which is the basis for our output shown in \ref{heightmap} another feature of this library is that it allows the noise generated to be written out to various graphical file types for the height-map in the project a Bitmap (BMP) graphical file type was produced which is then loaded into the project and stored in a data structure for manipulation and rendering.\\
 \begin{figure}[ht!]
 	\includegraphics[width=0.5\textwidth]{images/heightmaptest}
-	\caption{An image showing of one of the height-maps generated by noise}	 \label{noise}
+	\caption{An image showing the output image that was generated by noise}	 \label{noise}
 \end{figure}
 
 \pagebreak
 When this image is rendered to the screen against a depth buffer on the GPU it gives the following output:
 \begin{figure}[ht!]
 	\includegraphics[width=0.5\textwidth]{images/Heightmap-output}
-	\caption{the output from rendering the heightmap} \label{heightmap}
+	\caption{The output from rendering a heightmap} \label{heightmap}
 \end{figure}
 
 \subsection{Nodes and placement} 
-To place and visualise the nodes that are the basis for any path finding technique to be used on the terrain. The glut (OpenGL Utility Toolkit) api was used to create a simple method for rendering a sphere these were then placed along the x and z axis of the terrain and position on the y-axis is checked against the height values read in from the height-map to either raise or lower the nodes to suit the terrain. 
+To place and visualise the nodes that will be utilised for any path finding technique to be used across a terrain. The glut (OpenGL Utility Toolkit) api was used to create a simple method for rendering a sphere these were then placed along the x and z axis of the terrain and position on the y-axis is checked against the height values read in from the height-map to either raise or lower the nodes to suit the terrain. 
+
+\begin{figure}[ht!]
+	\includegraphics[width=0.5\textwidth]{images/nodes}
+	\caption{The node placement when drawn on to the terrain} \label{heightmap}
+\end{figure}
 
 \subsection{Path finding implementation}
 
@@ -157,7 +168,9 @@ To place and visualise the nodes that are the basis for any path finding techniq
 \subsection{Additional Information / Knowledge Required}
 To implement the project a solid knowledge of a graphical programming language such as openGL or DirectX is required also perfomance based GPGPU programming API's  such as OpenCL or Nvidia's CUDA could be useful for optimising the project.
 
-The artificial intelligence aspects of the project will require knowledge of various path-finding techniques and an understanding of machine based learning techniques would be beneficial to allow training of the system for analysis of the terrain and path-finding metric.   
+The artificial intelligence aspects of the project will require knowledge of various path-finding techniques and also an understanding of machine based learning would be beneficial to allow training of the system for analysis of the terrain and path-finding metric.   
+\subsection{Experimental plan}
+
 \newpage
 \section{Testing and results}
 \begin{tabular}{|p{0.8cm}|p{2cm}|p{5cm}|p{1.4cm}|p{2cm}|}
