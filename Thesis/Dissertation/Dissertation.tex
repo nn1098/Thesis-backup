@@ -102,7 +102,7 @@ As games evolve and expand with the times there is an increased demand placed up
 \section{Introduction}
 
 \subsection{Procedural Level Generation}
-Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale  then reading the data from a height-map and using this data to transform a plane to create a large scale landscape in chunks.
+Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale image then reading the data from a height-map and using this data to transform a plane to create a large scale landscape in chunks.
 
 \subsection{Path-Finding}
 Path-Finding is an area of Artificial Intelligence that allows for definition what parts of a given level can be moved to by computer controlled players this is done by creating a set of nodes on walkable areas then linking these nodes together to form a path there are various algorithms that accomplish this task. A time-line of path-finding developments is given at figure: \ref{timeline}. The project will attempt to use path-finding on the generated level in small chunks to allow for faster processing and access to more optimisation techniques.  
@@ -119,11 +119,11 @@ The main aim of this project is to examine and test the viability of combining l
    
    
    \subsubsection{Implementation Objectives}
-    The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across a given terrain and assess the quality of both the level and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
+    The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across the generated terrain and assess the quality of both the level and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
 
 
 \subsection{Report Layout}
-The report goes on to a review of literature sources associated with the project then technical information on the project will be supplied next there will be an analysis into the methodology used in implementation and finally the testing and results will be given alongside the conclusion of the project which will be based on the results of testing.
+The report goes on to give a review of various literature sources associated with the project Next there will be an analysis into the methodology used in implementation and finally the testing and results will be given alongside a conclusion to the project which will discuss the overall success and knowledge gained based on the results of testing.
 \newpage
 \section{Literature-Review}
 \input{Literature-Review/Literature-Review-Draft.tex}
@@ -185,7 +185,9 @@ Test Id & Test Name & Test Rationale & results & Retesting result (if modified) 
 \hline
 4 & Other level generation techniques & This could be required if the height-map approach has issues or is not viable due to low performance & pass & may be revisited as additional functionality\\
 \hline
-5 & node placement and rendering & This will allow for visualisation of the data for testing and the nodes are required for the path finder & pass & n/a\\ 
+5 & Node placement and rendering & This will allow for visualisation of the data for testing and the nodes are required for the path finder & pass & n/a\\ 
+\hline
+6 & Calculating the distance between all nodes on the generated terrain  & This is required for the path finding algorithm & ongoing & n/a\\
 \hline
 \end{tabular}
 \newpage
