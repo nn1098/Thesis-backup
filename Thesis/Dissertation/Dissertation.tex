@@ -50,7 +50,14 @@
 \makeatother
 
 \usepackage{titlesec}
-
+\usepackage{geometry}
+\geometry{
+	verbose,
+	tmargin=2.5cm,
+	bmargin=2.5cm,
+	lmargin=3.2cm,
+	rmargin=2.5cm
+}
 \setcounter{secnumdepth}{4}
 
 \titleformat{\paragraph}
@@ -115,8 +122,8 @@ There are other options that differ from a parallel approach that could be utili
 The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism for quality to allow a performance based assessment between both level of detail in the terrain when compared with the time taken for a path finding technique to find a correct path.\\\\
    The aim of this project will be achieved by completion of the following objectives which include both design and implementation as shown below.
    
-   \subsubsection{Design objectives}
-   
+   \subsubsection{Design objective}
+   The main design objective will be the creation of a graphical user interface that provides a suitable visualisation of the implemented solution and displays all relevant data. There are various libraries that allow for and assist with the creation of such interfaces such as GLFW for Opengl based applications however the windows SDK also contains this ability and will allow for clear differentiation from the interface and any graphical code included in the application.  
    
    \subsubsection{Implementation Objectives}
     The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across the generated terrain and assess the quality of both the level and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
