@@ -119,6 +119,7 @@ There are many factors that can affect the run-time performance of computer prog
 There are other options that differ from a parallel approach that could be utilised these can include memory alignment of instructions or a graphics processing unit (GPU) based implementation.      
 
 \subsection{Aims and Objectives}
+\label{Aims}
 The main aim of this project is to examine and test the viability of combining level generation and path finding algorithms to create a double ended testing mechanism for quality to allow a performance based assessment between both level of detail in the terrain when compared with the time taken for a path finding technique to find a correct path.\\\\
    The aim of this project will be achieved by completion of the following objectives which include both design and implementation as shown below.
    
@@ -137,6 +138,8 @@ The report goes on to give a review of various literature sources associated wit
 \newpage
 \section{Technical Information}
 This section will look at the hardware based issues with the project and will show updates to hardware utilisation.
+
+
 \newpage
 \section{Implementation Methodology}
 This section will analyse how the different areas of the implementation are approached and seek to explain how these approaches work at a technical level.
@@ -164,22 +167,34 @@ To place and visualise the nodes that will be utilised for any path finding tech
 
 \begin{figure}[ht!]
 	\includegraphics[width=0.5\textwidth]{images/nodes}
-	\caption{The node placement when drawn on to the terrain} \label{heightmap}
+	\caption{The node placement when drawn on to the terrain} \label{node}
 \end{figure}
 
 \subsection{Path finding implementation}
+To allow comparison between different path finding techniques we will implement both Dijkstra's algorithm and A-star when a path is found the nodes that make up the path will change from red \ref{node} to green.  
 
+\subsection{Combining the terrain and path-finding metric}
+When it comes to the combination of measurements gathered by the project our first concern is what exactly we are measuring which for the path-finding will be the distance of the path from start to finish and the time taken to build a path across the terrain.\\\\To measure the quality of terrain we will look at the standard deviation of the normals  
 
-\subsection{The metric for analysis of techniques}
 
 \subsection{Additional Information / Knowledge Required}
 To implement the project a solid knowledge of a graphical programming language such as openGL or DirectX is required also perfomance based GPGPU programming API's  such as OpenCL or Nvidia's CUDA could be useful for optimising the project.
 
 The artificial intelligence aspects of the project will require knowledge of various path-finding techniques and also an understanding of machine based learning would be beneficial to allow training of the system for analysis of the terrain and path-finding metric.   
 \subsection{Experimental plan}
+To determine how well the project works in terms of creating a combined metric for terrain generation and path-finding the following experiments will be run.
 
-\newpage
+\subsubsection{Experiment 1}
+For this experiment the aim is to gather the results of both path-finding techniques over a single terrain generated using one type of noise this will allow verification of the path finding techniques and leading on to the integration of a combined metric. 
+
+\subsubsection{Experiment 2}
+This experiment will use different instances of terrain generated using various types of noise and both path-finding techniques this will allow testing of the combined metric and show that the project can be utilised in a variety of scenarios.
+
+\subsubsection{After experiment 2} 
+As experiment two concludes this will show how the project meets with the aims laid out above \ref{Aims} following on from here the main focus will be to increase the run time performance of the project and to generalise the implementation to increase the area's in which the project can be applied. 
+
 \section{Testing and results}
+This table shows the testing carried out from  beginning of implementation it contains reasoning for the tests carried out and the results that were gathered.\\
 \begin{tabular}{|p{0.8cm}|p{2cm}|p{5cm}|p{1.4cm}|p{2cm}|}
 \hline
 Test Id & Test Name & Test Rationale & results & Retesting result (if modified) \\
@@ -194,8 +209,10 @@ Test Id & Test Name & Test Rationale & results & Retesting result (if modified) 
 \hline
 5 & Node placement and rendering & This will allow for visualisation of the data for testing and the nodes are required for the path finder & pass & n/a\\ 
 \hline
-6 & Calculating the distance between all nodes on the generated terrain  & This is required for the path finding algorithm & ongoing & n/a\\
+6 & Calculating the distance between all nodes on the generated terrain  & This is required for the path finding algorithm & pass & n/a\\
 \hline
+7 & Implementation of Dijkstra and A-star path-finding techniques &This will allow for a path to be built through the terrain & ongoing & n/a\\
+\hline   
 \end{tabular}
 \newpage
 \section{Conclusions}
