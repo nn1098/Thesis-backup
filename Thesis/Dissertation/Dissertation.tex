@@ -103,20 +103,23 @@ As games evolve and expand with the times there is an increased demand placed up
 \newpage
 
 \section*{Acknowledgements}
-\subsection*{}
+\subsection*{I would like to thank }
 
 \newpage
 \section{Introduction}
 
+\subsection{Computer Graphics}
+Firstly before we discuss the main techniques that will be use within the project we will give a background of computer graphics techniques that will be utilised in the project as a basis for anyone without prior knowledge.\\\\Computer graphics entails the process of drawing visuals to a screen using the graphics card of a computer the main technologies that allow this functionality include OpenGl (Open Graphics Library) and Microsoft's\textsuperscript(tm) DirectX framework. 
+
 \subsection{Procedural Level Generation}
-Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale image then reading the data from a height-map and using this data to transform a plane to create a large scale landscape in chunks.
+Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale image then reading the data from a height-map and using this data against the depth buffer of a graphics programming language to generate the world.
 
 \subsection{Path-Finding}
 Path-Finding is an area of Artificial Intelligence that allows for definition what parts of a given level can be moved to by computer controlled players this is done by creating a set of nodes on walkable areas then linking these nodes together to form a path there are various algorithms that accomplish this task. A time-line of path-finding developments is given at figure: \ref{timeline}. The project will attempt to use path-finding on the generated level in small chunks to allow for faster processing and access to more optimisation techniques.  
 \subsection{Optimisation Techniques}
 There are many factors that can affect the run-time performance of computer programs and a similar amount of approaches that can be utilised to improve performance some of the most prominent techniques in this area include use of multi-threading and parallelism frameworks such as OpenMP for use in single computer based solutions and MPI which allows for parallel implementation over a network.
 
-There are other options that differ from a parallel approach that could be utilised these can include memory alignment of instructions or a graphics processing unit (GPU) based implementation.      
+There are other options that differ from a parallel approach that could be utilised these can include memory alignment of instructions or parallelisation of the project through CPU based frameworks such as OpenMP or for greater performance a graphics processing unit (GPU) based implementation.      
 
 \subsection{Aims and Objectives}
 \label{Aims}
@@ -127,7 +130,7 @@ The main aim of this project is to examine and test the viability of combining l
    The main design objective will be the creation of a graphical user interface that provides a suitable visualisation of the implemented solution and displays all relevant data. There are various libraries that allow for and assist with the creation of such interfaces such as GLFW for Opengl based applications however the windows SDK also contains this ability and will allow for clear differentiation from the interface and any graphical code included in the application.  
    
    \subsubsection{Implementation Objectives}
-    The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across the generated terrain and assess the quality of both the level and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
+    The creation of an application using the chosen solution to allow a user to create various sizes of level.\\\\ The application will then build the terrain and perform path finding on a set of nodes positioned across a generated terrain.\\\\ The application will then assess the quality of both the level generated by  and path finding technique taking into account the complexity of a given level such as obstacles slopes and caves.\\\\The application will then assess how easy it is to build a path round that level and will give a score based on both the complexity of a generated level and the path-finding technique used.\\ 
 
 
 \subsection{Report Layout}
@@ -213,10 +216,10 @@ Test Id & Test Name & Test Rationale & results & Retesting result (if modified) 
 \hline
 7 & Implementation of Dijkstra and A-star path-finding techniques &This will allow for a path to be built through the terrain & ongoing & n/a\\
 \hline   
-\end{tabular}
+\end{tabular} 
 \newpage
 \section{Conclusions}
-
+Although the project never managed to establish a combined metric due to a number of issues both external and within the project we have researched how both level generation and path-finding are implemented and measured then stated how these techniques would be integrated together to form the metric.   
 
 \section{Bibliography}
 \bibliographystyle{apalike}
