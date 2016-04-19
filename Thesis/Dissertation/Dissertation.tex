@@ -111,6 +111,14 @@ As games evolve and expand with the times there is an increased demand placed up
 \subsection{Computer Graphics}
 Firstly before we discuss the main techniques that will be use within the project we will give a background of computer graphics techniques that will be utilised in the project as a basis for anyone without prior knowledge.\\\\Computer graphics entails the process of drawing visuals to a screen using the graphics card of a computer the main technologies that allow this functionality include OpenGl (Open Graphics Library) and Microsoft's\textsuperscript(tm) DirectX framework. 
 
+\subsubsection{The Graphics Pipeline}
+To utilise the graphics card to draw visuals we access the a pipeline within the card this began as a fixed set of steps that were followed to allow the creation of geometry and dictated how this was processed by the computer to draw this to a screen.\\\\Later on the graphics pipeline was developed to allow us to customize how the computer processed this data these developments gave access to techniques such as procedural level generation and allowed programmers to improve the quality of the graphics that were produced.   
+\subsubsection{Geometry}
+We create visuals to draw to the screen in the form of geometry this can include points which are known as vertices these represent a single point in 3d space and are made up of a coordinate in each of the X,Y and Z axes.\\\\From these we can build up lines in the 3d space which can be used to create primitive or complex shapes such as triangles or spheres. Furthermore due to advancements in this field now full scale 3d models can be broken down into these allowing us to draw these to a screen.\\\\ The geometry is represented as a matrix inside the computer and can be moved,rotated and scaled through the multiplication of the matrix representing the geometry by a transformation matrix.
+
+\subsubsection{Primitive shapes and polygons}
+The basic way to create geometry is through the use of either individual or strips of triangles which are described as polygons these can be used to make up many complex shapes and the number  of polygons that make up a shape or scene is generally used as a measurement of the complexity of a particular graphic.\\\\The number of polygons can be a performance concern if this count is very large however with the increase in both memory and performance in graphics cards from the past where the maximum was in the low thousands for characters in games and game worlds with tens of thousands till now where we can have up to twenty thousand polygons per character with detailed worlds that can contain millions of polygons.       
+
 \subsection{Procedural Level Generation}
 Procedural level generation is the process of creating a level through an algorithm contained within a computer program instead of using software to create this content then loading it into a program. The procedural level generation approach was mainly utilised in the early day of games development where storage space was a major concern.\\The first game to contain procedurally generated levels was Richard Garriott's  game Akalabeth: World of Doom which was published by California Pacific Computer Company in 1980 \cite{Akalabeth}.\\\\This project is going to utilise procedural level generation to create a average sized game world by creating a height-map which is a grey-scale image then reading the data from a height-map and using this data against the depth buffer of a graphics programming language to generate the world.
 
@@ -140,9 +148,22 @@ The report goes on to give a review of various literature sources associated wit
 \input{Literature-Review/Literature-Review-Draft.tex}
 \newpage
 \section{Technical Information}
-This section will look at the hardware based issues with the project and will show updates to hardware utilisation.
+In this section we will examine the software and hardware that will be utilised within the project and examine the purpose of these decisions and any benefits that these will give in terms of implementation of the project. 
 
+\subsection{Software Used}
+To implement the project the choice was made to use the C++ programming language this is due to the familiarity with the syntax and functionality of this language as well this allowed for the utilisation of the vast array of tools that are either directly integrated or tools that can be used within the C++ language.
 
+\subsubsection{OpenGL}
+The choice to use OpenGL to implement the graphics based area's for the project was made to increase the cross platform capabilities of the project this also allowed for a familiar tool set to be used which should aid the speed of development and allow for some base performance optimisations to be made at an early stage.   
+
+\subparagraph{GLM}
+is a maths based library which is made for use with OpenGL and other graphical based languages this library contains classes which allow for the creation of maths based variables such as vectors and matrices and functions that allow us to perform calculations based around these variables such as the dot and cross products of vectors and the inversion of matrices.  
+
+\subparagraph{Glut(OpenGL Utility Toolkit)} 
+This library contains many functions that can help with basic graphics tasks these include the representation and generation of several shapes such as spheres and pyramids and support for font rendering which will save time in the development process of the application there is also basic window creation and functionality for taking in input from devices such as mouse or keyboard.   
+
+\subsubsection{Windows SDK}
+This allows for the creation of application built for windows based systems with the functionality for the creation of detailed user interfaces with a lot of basic functionality built in including the ability to integrate and use OpenGl within the user interface for development of graphics applications.  
 \newpage
 \section{Implementation Methodology}
 This section will analyse how the different areas of the implementation are approached and seek to explain how these approaches work at a technical level.
@@ -151,7 +172,7 @@ For a basic outline of the expected execution of the project please refer to fig
 \subsection{Level Generation}
 To generate the three dimensional terrain used in the project a height-map was generated through the use of the Libnoise external library which is discussed below.
 
-\subsubsection{Libnoise external library}
+\subsubsection{Libnoise External Library}
 This external library generates different types of noise as shown by figure \ref{noise} this is achieved use of various modules that can produce different types of noise including Perlin which is the basis for our output shown in \ref{heightmap} another feature of this library is that it allows the noise generated to be written out to various graphical file types for the height-map in the project a Bitmap (BMP) graphical file type was produced which is then loaded into the project and stored in a data structure for manipulation and rendering.\\
 \begin{figure}[ht!]
 	\includegraphics[width=0.5\textwidth]{images/heightmaptest}
