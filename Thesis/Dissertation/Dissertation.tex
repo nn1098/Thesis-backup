@@ -86,7 +86,7 @@
 \input{./Dissertation-DP.tex}
 \pagebreak
 \begin{abstract}
-As games evolve and expand with the times there is an increased demand placed upon the hardware of games consoles and personal computers in terms of storage space and memory usage. This project will analyse the approaches currently available and will examine the viability of developing a combined approach to level generation and path finding with the aim of producing a solution that will compete with current approaches in terms of the quality of the terrain generated tested through the results given by the path finding and the distances between nodes that will be placed in sane (flat, reachable) locations on the terrain this will also allow for testing the quality of the path finding approach by testing against different complexities of terrain and existing industry techniques.     
+As games evolve and expand with the times there is an increased demand placed upon the hardware of games consoles and personal computers in terms of storage space and memory usage. This project will analyse the approaches currently available and will examine the viability of developing a combined approach to level generation and path finding with the aim of producing a solution that will compete with current approaches in terms of the quality of the terrain generated tested through the results given by the path finding and the distances between nodes that will be placed in sane (flat, reachable) locations on the terrain this will also allow for testing the quality of the path finding approach by comparing this with different complexities of terrain and existing industry and commercial techniques.     
 \end{abstract}
 \pagebreak
 
@@ -109,7 +109,7 @@ As games evolve and expand with the times there is an increased demand placed up
 \section{Introduction}
 
 \subsection{Computer Graphics}
-Firstly before we discuss the main techniques that will be use within the project we will give a background of computer graphics techniques that will be utilised in the project as a basis for anyone without prior knowledge.\\\\Computer graphics entails the process of drawing visuals to a screen using the graphics card of a computer the main technologies that allow this functionality include OpenGl (Open Graphics Library) and Microsoft's\textsuperscript(tm) DirectX framework. 
+Firstly before we discuss the main techniques that will be use within the project we will give a background of computer graphics techniques that will be utilised in the project as a basis for anyone without prior knowledge.\\\\Computer graphics entails the process of drawing visuals to a screen using the graphics card of a computer the main technologies that allow this functionality include OpenGl (Open Graphics Library) and Microsoft's\textsuperscript{tm} DirectX framework. 
 
 \subsubsection{The Graphics Pipeline}
 To utilise the graphics card to draw visuals we access the a pipeline within the card this began as a fixed set of steps that were followed to allow the creation of geometry and dictated how this was processed by the computer to draw this to a screen.\\\\Later on the graphics pipeline was developed to allow us to customize how the computer processed this data these developments gave access to techniques such as procedural level generation and allowed programmers to improve the quality of the graphics that were produced.   
@@ -160,11 +160,19 @@ The choice to use OpenGL to implement the graphics based area's for the project 
 is a maths based library which is made for use with OpenGL and other graphical based languages this library contains classes which allow for the creation of maths based variables such as vectors and matrices and functions that allow us to perform calculations based around these variables such as the dot and cross products of vectors and the inversion of matrices.  
 
 \subparagraph{Glut(OpenGL Utility Toolkit)} 
-This library contains many functions that can help with basic graphics tasks these include the representation and generation of several shapes such as spheres and pyramids and support for font rendering which will save time in the development process of the application there is also basic window creation and functionality for taking in input from devices such as mouse or keyboard.   
+This library contains many functions that can help with basic graphics tasks these include the representation and generation of several shapes such as spheres and pyramids and support for font rendering and input from devices such as mouse or keyboard which will save time in the development process of the application.   
 
 \subsubsection{Windows SDK}
 This allows for the creation of application built for windows based systems with the functionality for the creation of detailed user interfaces with a lot of basic functionality built in including the ability to integrate and use OpenGl within the user interface for development of graphics applications.  
-\newpage
+
+\subsection{Hardware}
+The minimum requirements of a system to run the created application is as follows:
+\begin{itemize}
+	\item Processor - Quad core Intel or AMD with over 2.0GHz clock speed 
+	\item Graphics card - Either Nvidia or AMD with OpenGL version of 440
+	\item Memory - The memory usage is inconsequential requiring around 6 MB in RAM  
+\end{itemize}
+
 \section{Implementation Methodology}
 This section will analyse how the different areas of the implementation are approached and seek to explain how these approaches work at a technical level.
 
