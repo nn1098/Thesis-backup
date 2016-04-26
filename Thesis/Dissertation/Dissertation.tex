@@ -205,6 +205,13 @@ To place and visualise the nodes that will be utilised for any path finding tech
 \subsection{Path finding implementation}
 To allow comparison between different path finding techniques we will implement both Dijkstra's algorithm and A-star when a path is found the nodes that make up the path will change from red \ref{node} to green.  
 
+\begin{figure}[ht!]
+	\includegraphics[width=0.5\textwidth]{images/Dijkstra}
+	\includegraphics[width=0.5\textwidth]{images/Astar}
+	\caption{The output given be pathfinding--- Left:Dijkstra --- Right:Astar} \label{Dijkstrafind}
+\end{figure}
+
+\pagebreak
 \subsection{Combining the terrain and path-finding metric}
 When it comes to the combination of measurements gathered by the project our first concern is what exactly we are measuring which for the path-finding will be the distance of path from start to finish and the time taken to build a path across the terrain.\\\\To measure the quality of terrain we will look at the standard deviation of the normals and time taken to generate a suitable terrain now to combine these timing measurements is fine as they will be on the same scale.\\\\ There is an issue when deciding how we measure the distance of a path against the standard deviation of the normals on the terrain as these will be scaled differently now there are a few options here firstly we could take lots of path-finding measurements and by working out how much difference there is between these we could establish a scale that would be able to integrate with the standard deviation of the terrain.      
 
