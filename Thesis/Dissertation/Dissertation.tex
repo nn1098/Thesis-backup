@@ -12,6 +12,7 @@
 \usepackage{graphicx} 
 \usepackage[parfill]{parskip} 
 \usepackage{lscape}
+\usepackage{float}
 %%% PACKAGES
 \usepackage{booktabs} % for much better looking tables
 \usepackage{array} % for better arrays (eg matrices) in maths
@@ -76,7 +77,6 @@
   {\small\quotation
   {\bfseries\noindent{\large\abstractname\\\noindent{}}}}
   {\endquotation}
-
 \begin{document}
 %you can import other documents into your main one, these layout the Title and Declarations on its own page.
 %you might need to change these to \ if your on Microsoft Windows.
@@ -233,7 +233,7 @@ This experiment will use different instances of terrain generated using various 
 As experiment two concludes this will show how the project meets with the aims laid out above \ref{Aims} following on from here the main focus will be to increase the run time performance of the project and to generalise the implementation to increase the area's in which the project can be applied. 
 
 \section{Testing and results}
-This table shows the testing carried out from  beginning of implementation it contains reasoning for the tests carried out and the results that were gathered.\\
+\begin{table}[H]
 \begin{tabular}{|p{0.8cm}|p{2cm}|p{5cm}|p{1.4cm}|p{2cm}|}
 \hline
 Test Id & Test Name & Test Rationale & results & Retesting result (if modified) \\
@@ -250,9 +250,35 @@ Test Id & Test Name & Test Rationale & results & Retesting result (if modified) 
 \hline
 6 & Calculating the distance between all nodes on the generated terrain  & This is required for the path finding algorithm & pass & n/a\\
 \hline
-7 & Implementation of Dijkstra and A-star path-finding techniques &This will allow for a path to be built through the terrain & ongoing & n/a\\
+7 & Implementation of Dijkstra and A-star path-finding techniques &This will allow for a path to be built through the terrain & pass & n/a\\
+\hline
+8 & Getting the normals of the terrain for quality measurement& This will be the last functionality that will be needed for the project & pass & n/a\\
 \hline   
 \end{tabular} 
+\caption{A table of tests carried out on the system}
+\end{table}
+
+\subsection{Results}
+\begin{table}[H]
+\begin{tabular}{|p{2.7cm}|p{2cm}|p{4cm}|p{2.2cm}|p{2.2cm}|p{1.4cm}|}
+	\hline
+Noise Type&	Pathfinder&	Size of Path in Nodes	& Total Path Distance	& TimeTaken	& Terrain Quality\\
+\hline
+Perlin&	class AStar&	62	& 30257.46875	& 0.000949	& 981\\
+\hline
+Perlin&	class Dijkstra&	62&	33461.98438&	0.000728&	981\\
+\hline
+Rigid  MultiFractal&	class Dijkstra&	57&	28352.38086&	0.001816&	1357\\
+\hline
+Rigid MultiFractal&	class AStar&	59&	27775.75977&	0.001203&	1357\\
+\hline
+\end{tabular}
+\caption{A table of results from pathfinding across different terrain types for Experiment 1 \\Note: for terrain quality lower is better due to the terrain being more level}
+	\label{Experiment1}
+\end{table}
+
+The results in \ref{Experiment1} show us that for path-finding across a terrain that the A star algorithm creates a lower distance path across the terrain with faster processing times than Dijkstra's algorithm we can also see that the terrain quality metric is established with Perlin noise creating the best terrain in terms of the accessibility to area's of the map.  
+
 \newpage
 \section{Conclusions}
 Although the project never managed to establish a combined metric due to a number of issues both external and within the project we have researched how both level generation and path-finding are implemented and measured then stated how these techniques would be integrated together to form the metric.   
