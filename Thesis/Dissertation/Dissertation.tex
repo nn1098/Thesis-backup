@@ -103,7 +103,7 @@ As games evolve and expand with the times there is an increased demand placed up
 \newpage
 
 \section*{Acknowledgements}
-\subsection*{I would like to thank }
+\subsection*{I would like to thank Rob Kemmer for his excellent feedback, Kevin Chalmers for his pointers to information sources, Neil Urquhart for his assistance and feedback regarding path finding and finally my friends within the university for top quality banter and reassurance throughout the course of this project.}
 
 \newpage
 \section{Introduction}
@@ -207,18 +207,22 @@ To place and visualise the nodes that will be utilised for any path finding tech
 \end{figure}
 
 We can see here for the example that utilises rigid multi fractal noise the node placement looks incorrect this is due to the floor of the terrain being so far away from the peaks of the terrain causing the geometry to be culled (not drawn). 
+\newpage
 \subsection{Path finding implementation}
 To allow comparison between different path finding techniques we will implement both Dijkstra's algorithm and A-star when a path is found the nodes that make up the path will change from red \ref{node} to green.  
 
-\begin{figure}[ht!]
+\begin{figure}[H]
 	\includegraphics[width=0.5\textwidth]{images/Dijkstra}
 	\includegraphics[width=0.5\textwidth]{images/Astar}
-	\caption{The output given be pathfinding--- Left:Dijkstra --- Right:Astar} \label{Dijkstrafind}
+	\includegraphics[width=0.5\textwidth]{images/RMFDijkstra}
+	\includegraphics[width=0.5\textwidth]{images/RMFastar}
+	\caption{The output given by path-finding--- Left:Dijkstra --- Right:Astar} \label{Dijkstrafind}
 \end{figure}
 
+As shown above the Dijkstra pathfinder stays based toward the edge whereas the A star algorithm makes a diagonal pattern towards the goal this is due to the distanceo from each neighbour to the goal being considered when using A star instead of just choosing the lowest distance neighbour as is done in Dijkstra.  
 \pagebreak
 \subsection{Combining the terrain and path-finding metric}
-When it comes to the combination of measurements gathered by the project our first concern is what exactly we are measuring which for the path-finding will be the distance of path from start to finish and the time taken to build a path across the terrain.\\\\To measure the quality of terrain we will look at the standard deviation of the normals across a given terrain to start we will combine the timing measurements as they will be on the same scale.\\\\ There is an issue when deciding how we measure the distance of a path against the standard deviation of the normals on the terrain as these will be scaled differently now there are a few options here firstly we could take lots of path-finding measurements and by working out how much difference there is between these we could establish a scale that would be able to integrate with the standard deviation of the terrain.      
+When it comes to the combination of measurements gathered by the project our first concern is what exactly we are measuring which for the path-finding will be the distance of path from start to finish and the time taken to build a path across the terrain.\\\\To measure the quality of terrain we will look at the standard deviation of the normals across a given terrain to start we will combine the timing measurements as they will be on the same scale.\\\\ There is an issue when deciding how we measure the distance of a path against the standard deviation of the normals on the terrain as these will be scaled differently now there are a few options here firstly we could take lots of path-finding measurements and by working out how much difference there is between these we could establish a scale that would be able to integrate with the standard deviation of the terrain normals with the other measurements that form the combined metric.      
 
 
 \subsection{Additional Information / Knowledge Required}
@@ -226,19 +230,19 @@ To implement the project a solid knowledge of a graphical programming language s
 
 The artificial intelligence aspects of the project will require knowledge of various path-finding techniques and also an understanding of machine based learning would be beneficial to allow training of the system for analysis of the terrain and path-finding metric.   
 \subsection{Experimental plan}
-To determine how well the project works in terms of creating a combined metric for terrain generation and path-finding the following experiments will be run.
+To determine the completion of the project aims a series of experiments will be performed on the project these will be outlined below and the reasoning for performing these experiments will be discussed.
 
 \subsubsection{Experiment 1}
 For this experiment the aim is to gather the results of both path-finding techniques over a variety of terrain types generated using various types of noise as this will allow verification of the path finding techniques and lead on towards the integration of a combined metric. 
 
 \subsubsection{Experiment 2}
-This will use the results from Experiment 1 to show how the combined metric works and discuss how the metric was established with examples this will be done to verify the reading from the system.
+The aim of this experiment is to show the combined score and using the results from experiment one examine the validity of the metric in terms of weighting the measurements taken and overall scaling.
 
 \subsubsection{After experiment 2} 
-As experiment two concludes this will show how the project meets with the aims laid out above \ref{Aims} following on from here the main focus will be to increase the run time performance of the project and to generalise the implementation to increase the area's in which the project can be applied. 
+As experiment two concludes this will show how the project meets with the aims laid out in \ref{Aims} following on from here the main focus will be to increase the run time performance of the project and to generalise the implementation to increase the area's in which the project can be applied. 
 
 \section{Testing and results}
-This section will first show all the tests that were carried out during the development life cycle with details on why these tests were necessary 
+This section will first show all the tests that were carried out during the development life cycle with details on why these tests were necessary we will then analyse the results gathered from the experiments above and discuss the meaning and comparisons drawn from these results.  
 \begin{table}[h!]
 \begin{tabular}{|p{0.8cm}|p{2cm}|p{5cm}|p{1.4cm}|p{2cm}|}
 \hline
@@ -294,9 +298,9 @@ The results in \ref{Experiment1} show us that for path-finding across a terrain 
 		\hline
 		Perlin&	class AStar&	62	& 30257.46875	& 0.000949	& 2.67\\
 		\hline
-		Perlin&	class Dijkstra&	62&	33461.98438&	0.000728&	1.31\\
+		Perlin&	class Dijkstra&	62&	33461.98438&	0.000728& 1.87	\\
 		\hline
-		Rigid  MultiFractal&	class Dijkstra&	57&	28352.38086&	0.001816&	1.87\\
+		Rigid  MultiFractal&	class Dijkstra&	57&	28352.38086&	0.001816& 1.31\\
 		\hline
 		Rigid MultiFractal&	class AStar&	57&	27775.75977&	0.001203&	2.25\\
 		\hline
@@ -305,11 +309,15 @@ The results in \ref{Experiment1} show us that for path-finding across a terrain 
 	\label{Experiment 2}
 \end{table}
 
-As seen in \ref{Experiment 2} the terrain quality measurement has been removed and replaced with the combined score to create this score we take the three measurements of pathfinder performance, the total distance of the path created and the quality of terrain and scale these based on how much better the measurements were for a given type of terrain.\\\\The key example of this is that the A star results over a terrain generated by Perlin noise scores higher than running the same parameters over a rigid multi-fractal terrain this is due to the other parameters being better apart from the terrain quality.       
+As seen in \ref{Experiment 2} the terrain quality measurement has been removed and replaced with the combined score to create this score we take the three measurements of pathfinder performance, the total distance of the path created and the quality of terrain and scale these based on how much better the measurements were for a given type of terrain.\\\\The key example of this is that the A star results over a terrain generated by Perlin noise scores higher than running the same parameters over a rigid multi-fractal terrain this is due to the other parameters measured being better over apart from the terrain quality which is worse for terrains generated with rigid multi fractal noise.       
 
 \newpage
 \section{Conclusions}
 In summary this project set out to investigate the creation of a combined metric for both path-finding and procedural level generation this was envisioned as a tool for use within a games engine to fine tune either the level or path-finder created on a bias between performance or quality by allowing changes that were made to either the level or path-finder to affect the overall measurement produced.\\\\This combined score was established by testing both Dijkstra and A star path-finding algorithms over terrain that had been generated with both Perlin and rigid multi fractal noise types.\\\\These results show the individual values of each measured element and show the greater performance of the A star algorithm in comparison with Dijkstra even across different terrain types.\\\\In terms of the terrain generated it was shown that using Perlin noise produces a smoother terrain than rigid multi fractal hence it having a smaller value in the terrain quality see the experiment 1 results \ref{Experiment1}.\\\\ From the combined metric results \ref{Experiment 2} we can see that the weighting system used to create the combined metric works through examination of the relation between these results and the data gathered in experiment 1 \ref{Experiment1}.
+
+\subsection{Future Work}
+Although the main aim of the project was achieved there are many improvements that could be made as discussed throughout this paper the use of optimisation techniques could have greatly improved
+the run time performance of the application produced.\\\\Another key factor that could lead to improvement would be the inclusion of more terrain types to test against as this would allow for greater providence for the metric created.\\\\To conclude the application could have the functionality for building terrain built in and accessible through the user interface this would not only solve the previous improvement factor discussed but would also allow the user to both alter the parameters of a terrain or to regenerate and get a new different terrain.     
 \newpage
 \section{Bibliography}
 \bibliographystyle{apalike}
